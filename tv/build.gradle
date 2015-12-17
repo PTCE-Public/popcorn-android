@@ -1,0 +1,103 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.20.1'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'hugo'
+apply plugin: 'io.fabric'
+apply plugin: 'com.github.ben-manes.versions'
+
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSdk
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    def buildNumber = (System.getenv("BUILD_NUMBER") == null ? 0 : System.getenv("BUILD_NUMBER")) as int
+
+    defaultConfig {
+        applicationId "pct.droid.ce.tv"
+        minSdkVersion 21
+        targetSdkVersion 22 //dont use rootProject.ext.targetSdk since for older versions something doesnt work if this is API level 23
+        versionCode buildNumber
+        versionName "0.1.4"
+        multiDexEnabled true
+        manifestPlaceholders = [crashlyticsApiKey: System.getenv("CRASHLYTICS_API_KEY") ?: "b246d46ecb3f6b64f3ce24c0c2055cc4fd101c93"]
+    }
+
+    signingConfigs {
+        mainConfig {
+            keyAlias System.getenv("S_ALIAS").toString() ?: ""
+            keyPassword System.getenv("S_KEYPASS").toString() ?: ""
+            storeFile System.getenv("S_KEYSTORE").toString() ? file(System.getenv("S_KEYSTORE").toString()) : file("")
+            storePassword System.getenv("S_KEYPASS").toString() ?: ""
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.mainConfig
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            versionNameSuffix ("#" + (buildNumber == 0 ? "local" : buildNumber).toString())
+            applicationIdSuffix ".dev"
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    splits {
+        abi {
+            enable true
+            universalApk false
+            reset()
+            include 'arm64-v8a', 'armeabi-v7a', 'x86'
+        }
+    }
+
+    project.ext.versionCodes = ["armeabi": 1, "armeabi-v7a": 2, "arm64-v8a": 3, "x86": 4]
+}
+/*
+ * This file is part of Popcorn Time.
+ *
+ * Popcorn Time is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Popcorn Time is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Popcorn Time. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+//./gradlew dependencyUpdates -Drevision=release
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile "com.android.support:support-annotations:${rootProject.ext.appCompatVersion}"
+    compile "com.android.support:palette-v7:${rootProject.ext.appCompatVersion}"
+    compile "com.android.support:leanback-v17:${rootProject.ext.appCompatVersion}"
+    compile "com.squareup.picasso:picasso:2.5.2"
+    compile "com.jakewharton:butterknife:7.0.1"
+    compile 'de.greenrobot:eventbus:2.4.1'
+
+    compile project(':base')
+}
