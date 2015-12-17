@@ -1,21 +1,21 @@
-[Popcorn Time for Android](https://git.popcorntime.io/popcorntime/android)  [![Build Status](http://ci.popcorntime.io/buildStatus/icon?job=Popcorn-Android)](http://ci.popcorntime.io/job/Popcorn-Android/)
+[Popcorn Time for Android](https://gitlab.com/popcorntimece/Android)  
 ----
 
 Allow any Android user to watch movies easily streaming from torrents, without any particular knowledge.
 
-Visit the project's website at <http://popcorntime.io>.
+Visit the project's website at <http://popcorntime.ml>.
 
-* [Continuous Integration](http://ci.popcorntime.io/job/Popcorn-Android/)
-* [Issue Tracker](https://git.popcorntime.io/popcorntime/android/issues)
+* [Continuous Integration](http://ci.popcorntime.ml/job/Popcorn-Android/)
+* [Issue Tracker](https://git.popcorntime.ml/popcorntime/android/issues)
 
 ## Community
 
 Keep track of Popcorn Time development and community activity.
 
-* Follow Popcorn Time on [Twitter](https://twitter.com/popcorntimetv), [Facebook](https://www.facebook.com/PopcornTimeTv) and [Google+](https://plus.google.com/+PopcorntimeIo).
-* Read and subscribe to the [The Official Popcorn Time Blog](http://blog.popcorntime.io).
-* Join in discussions on the [Popcorn Time Forum](https://discuss.popcorntime.io)
-* Connect with us on IRC at `#popcorntime` on freenode ([web access](http://webchat.freenode.net/?channels=popcorntime))
+* Follow Popcorn Time on [Twitter](https://twitter.com/popcorntimece).
+* Read and subscribe to the [The Official Popcorn Time Blog](http://blog.popcorntime.ml).
+* Join in discussions on the [Popcorn Time Forum](https://discuss.popcorntime.ml)
+
 
 ## Getting Involved
 
