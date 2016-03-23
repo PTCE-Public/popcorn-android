@@ -52,7 +52,7 @@ public class YTSProvider extends MediaProvider {
     private static final YTSProvider sMediaProvider = new YTSProvider();
     private static Integer CURRENT_API = 0;
     private static final String[][] API_URLS = {
-            {"https://yts.ag/api/v2/", "json"}
+            {"https://yts.popcorntimece.ch/api/v2/", "json"}
     };
     public static String CURRENT_URL = API_URLS[CURRENT_API][0];
 
@@ -151,7 +151,7 @@ public class YTSProvider extends MediaProvider {
 
         Request.Builder requestBuilder = new Request.Builder();
         String query = buildQuery(params);
-        requestBuilder.url(CURRENT_URL + "list_movies." + API_URLS[CURRENT_API][1] + "?" + query);
+        requestBuilder.url(CURRENT_URL + "list_movies_pct." + API_URLS[CURRENT_API][1] + "?" + query);
         requestBuilder.tag(MEDIA_CALL);
 
         return fetchList(currentList, requestBuilder, filters, callback);
