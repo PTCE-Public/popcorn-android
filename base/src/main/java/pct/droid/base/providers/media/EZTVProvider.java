@@ -46,8 +46,8 @@ public class EZTVProvider extends MediaProvider {
 
     private static Integer CURRENT_API = 0;
     private static final String[] API_URLS = {
+            "https://popcorntimece.ch/api/v2/",
             "https://www.popcorntime.ws/api/eztv/",
-            "https://popcornwvnbg7jev.onion.to/",
             "https://odgoglfi7uddahby.onion.to/",
             "https://mi2i2dospijuauxa.onion.to/",
     };
